@@ -4,7 +4,9 @@ const connection = require("../database/connection");
 
 module.exports = {
     async index(req, res) {
-        const ongs = await connection("ongs").select("*");
+        const ongs = await connection("ongs")
+            .select("*");
+
         return res.json(ongs);
     },
 
@@ -15,7 +17,9 @@ module.exports = {
             city,
             uf } = req.body;
 
-        const id = crypto.randomBytes(4).toString("HEX");
+        const id = crypto
+            .randomBytes(4)
+            .toString("HEX");
 
         await connection("ongs").insert({
             id,
